@@ -1,3 +1,4 @@
+Prosty projekt sklepu internetowego| Łukasz Dudicz
  Strona główna
 Wyświetlanie listy produktów (np. zeszyt, ołówek, długopis).
 Każdy produkt posiada nazwę, obrazek oraz przycisk "Dodaj do koszyka".
