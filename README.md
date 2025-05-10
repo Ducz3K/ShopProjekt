@@ -2,7 +2,7 @@ Prosty projekt sklepu internetowego| Łukasz Dudicz
  Strona główna
 Wyświetlanie listy produktów (np. zeszyt, ołówek, długopis).
 Każdy produkt posiada nazwę, obrazek oraz przycisk "Dodaj do koszyka".
-Dynamiczne pokazywanie liczby produktów w koszyku obok ikony 🛒.
+Dynamiczne pokazywanie liczby produktów w koszyku obok ikony.
   Koszyk
 Przechowywanie produktów dodanych przez użytkownika w sesji.
 Wyświetlanie wszystkich produktów w koszyku z:
