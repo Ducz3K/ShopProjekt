@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sklepik Internetowy</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="logo">🛍️ MójSklep</div>
+    <div class="top-buttons">
+        <div th:if="${username != null}">
+            <span th:text="'Witaj, ' + ${username}"></span>
+            <a href="/logout"><button>Wyloguj się</button></a>
+            <a href="/myOrders"><button>Moje zamówienia</button></a>
+        </div>
+
+        <div th:if="${username == null}">
+            <a href="/login"><button>Zaloguj się</button></a>
+            <a href="/register"><button>Rejestracja</button></a>
+        </div>
+
+        <a href="/koszyk">
+            <button>🛒 Koszyk (<span th:text="${cartSize}">0</span>)</button>
+        </a>
+    </div>
+</div>
+
+<h1>Sklepik Internetowy</h1>
+
+<div class="product-grid">
+    <div class="product" th:each="productEntry : ${products}">
+        <img th:src="${productEntry.value.imageUrl}" th:alt="${productEntry.value.name}">
+        <h3 th:text="${productEntry.value.name}">Nazwa produktu</h3>
+        <p th:text="${productEntry.value.description}">Opis produktu</p>
+        <p style="font-weight: bold; color: #a67c52;" th:text="'Cena: ' + ${productEntry.value.price} + ' zł'">Cena: 0.00 zł</p>
+        <form action="/dodaj" method="post">
+            <input type="hidden" name="id" th:value="${productEntry.key}">
+            <button class="btn" type="submit">Dodaj do koszyka</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 MójSklep - Wszelkie prawa zastrzeżone</p>
+</footer>
+
+<div style="position: fixed; bottom: 10px; left: 10px; font-size: 14px; color: #666;">
+    Autor: Łukasz Dudicz
+</div>
+
+</body>
+</html>

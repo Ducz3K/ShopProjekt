@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Panel Admina - Zamówienia</title>
+  <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f4ef;
+        margin: 0; padding: 0; color: #444;
+    }
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #fffdf8;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 {
+        color: #3e2f1c;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    pre {
+        background: #e4dccf;
+        padding: 15px;
+        border-radius: 10px;
+        white-space: pre-wrap;
+        font-family: monospace;
+        margin-bottom: 20px;
+        box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+<div th:if="${#lists.isEmpty(allOrders)}">
+  <p>Brak zamówień do wyświetlenia.</p>
+</div>
+
+<div th:each="order : ${allOrders}">
+  <pre>
+    Użytkownik: <span th:text="${order.username}"></span>
+    Adres: <span th:text="${order.address}"></span>
+    Płatność: <span th:text="${order.paymentMethod}"></span>
+    Data: <span th:text="${order.date}"></span>
+    Produkty:
+    <ul>
+      <li th:each="p : ${order.products}">
+        <span th:text="${p.name}"></span> - <span th:text="${p.price}"></span> zł
+      </li>
+    </ul>
+  </pre>
+</div>
+
+
+

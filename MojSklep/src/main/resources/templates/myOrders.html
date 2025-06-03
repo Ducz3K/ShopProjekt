@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Moje Zamówienia</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="logo">🛍️ MójSklep</div>
+  <div class="top-buttons">
+    <div th:if="${username != null}">
+      <span th:text="'Witaj, ' + ${username}"></span>
+      <a href="/logout"><button>Wyloguj się</button></a>
+      <a href="/myOrders"><button>Moje zamówienia</button></a>
+    </div>
+    <div th:if="${username == null}">
+      <a href="/login"><button>Zaloguj się</button></a>
+      <a href="/register"><button>Rejestracja</button></a>
+    </div>
+    <a href="/koszyk">
+      <button>🛒 Koszyk (<span th:text="${cartSize}">0</span>)</button>
+    </a>
+  </div>
+</div>
+
+<h1 style="text-align: center; margin-top: 30px;">🧾 Moje zamówienia</h1>
+
+<div class="order-list" style="max-width: 800px; margin: auto; padding: 20px;">
+
+  <div th:if="${#lists.isEmpty(userOrders)}">
+    <p style="text-align: center;">Nie masz żadnych zamówień.</p>
+  </div>
+
+  <div th:each="order, iterStat : ${userOrders}" class="order-card" style="border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; background-color: #f9f9f9;">
+    <h3>Zamówienie <span th:text="${iterStat.count}"></span></h3>
+    <p><strong>Adres:</strong> <span th:text="${order.address}"></span></p>
+    <p><strong>Płatność:</strong> <span th:text="${order.paymentMethod}"></span></p>
+    <p><strong>Data:</strong> <span th:text="${order.date}"></span></p>
+
+    <table style="width: 100%; margin-top: 10px; border-collapse: collapse;">
+      <thead style="background-color: #e0e0e0;">
+      <tr>
+        <th style="text-align: left; padding: 8px;">Produkt</th>
+        <th style="text-align: right; padding: 8px;">Cena (zł)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product : ${order.products}">
+        <td style="padding: 8px;" th:text="${product.name}"></td>
+        <td style="padding: 8px; text-align: right;" th:text="${product.price}"></td>
+      </tr>
+      </tbody>
+    </table>
+    </p>
+  </div>
+</div>
+
+<footer style="text-align: center; margin-top: 50px; color: #777;">
+  <p>&copy; 2025 MójSklep - Wszelkie prawa zastrzeżone</p>
+</footer>
+
+</body>
+</html>
+
+
