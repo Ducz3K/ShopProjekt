@@ -1,13 +1,11 @@
 package com.Lukasz.MojSklep.Controller;
 
-import com.Lukasz.MojSklep.Model.Order;
 import com.Lukasz.MojSklep.Service.OrderService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
 
 @Controller
 public class OrderController {

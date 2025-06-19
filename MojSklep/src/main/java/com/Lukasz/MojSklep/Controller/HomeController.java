@@ -24,7 +24,7 @@ public class HomeController {
         this.cartService = cartService;
         this.userService = userService;
     }
-
+// strona główna
     @GetMapping("/")
     public String home(HttpSession session, Model model) {
         model.addAttribute("products", productService.getAllProducts());
@@ -32,7 +32,7 @@ public class HomeController {
         model.addAttribute("username", session.getAttribute("username"));
         return "home";
     }
-
+// dodawanie do koszyka
     @PostMapping("/dodaj")
     public String addToCart(@RequestParam String id, HttpSession session) {
         cartService.addToCart(id, session);
@@ -46,14 +46,14 @@ public class HomeController {
         model.addAttribute("username", session.getAttribute("username"));
         return "koszyk";
     }
-
+// usuwanie produktów w koszyku
     @PostMapping("/usun")
     public String removeFromCart(@RequestParam int index, HttpSession session) {
         cartService.removeFromCart(index, session);
         return "redirect:/koszyk";
     }
 
-
+// składanie zamówień
     @PostMapping("/zamow")
     public String placeOrder(HttpSession session,
                              @RequestParam String firstName,

@@ -16,7 +16,7 @@ public class AdminController {
     public AdminController(OrderService orderService) {
         this.orderService = orderService;
     }
-
+    //  obsługuje zapytania GET pod URL-em "/admin-orders" , obsługuje wszystkie złożone zamówienia i wysyła do widoku
     @GetMapping("/admin-orders")
     public String showAllOrders(Model model) {
         List<Order> allOrders = orderService.getAllOrdersDetailed();

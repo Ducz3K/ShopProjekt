@@ -16,12 +16,12 @@ public class AuthController {
     public AuthController(UserService userService) {
         this.userService = userService;
     }
-
+// wyświetla login.html
     @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
-
+// formularz logowania
     @PostMapping("/login")
     public String login(@RequestParam String username,
                         @RequestParam String password,
@@ -36,13 +36,13 @@ public class AuthController {
             return "login";
         }
     }
-
+// wylogowanie, usuwa dane z sesji
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/login";
     }
-
+// formularz rejestracji
     @GetMapping("/register")
     public String registerPage() {
         return "register";  // nazwa widoku do rejestracji
@@ -52,7 +52,7 @@ public class AuthController {
     public String register(@RequestParam String username,
                            @RequestParam String password,
                            Model model) {
-        boolean added = userService.registerUser(username.toLowerCase().trim(), password);
+        boolean added = userService.registerUser(username.toLowerCase().trim(), password); // sprawdzenie czy user istnieje
         if (added) {
             model.addAttribute("success", "Użytkownik zarejestrowany!");
         } else {
